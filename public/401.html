@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="manifest" href="./manifest.json" />
+    <title>401 Error - Unauthorized</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 100px;
+        }
+
+        h1 {
+            font-size: 4em;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        a {
+            color: #222;
+            transition: opacity 250ms ease-in-out;
+            display: inline-block;
+        }
+
+        a:hover,
+        a:focus-within {
+            opacity: 1;
+        }
+
+        a::after {
+            content: '';
+            width: 0px;
+            height: 2px;
+            display: block;
+            background: #222;
+            transition: 200ms;
+        }
+
+        a:hover::after,
+        a:focus-within::after {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>401 Error - Unauthorized</h1>
+    <p>You do not have permission or Authorization to do that.</p>
+    <p>Return to the <a href="/">homepage</a>.</p>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js')
+        }
+    </script>
+</body>
+
+</html>
