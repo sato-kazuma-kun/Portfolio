@@ -1,11 +1,18 @@
-import { Link } from "react-router-dom";
+import AboutSection from "@/components/app/about-section";
+import ContactsSection from "@/components/app/contacts-section";
+import ExploreSection from "@/components/app/explore-section";
+import HeroSection from "@/components/app/hero-section";
+import ProjectsSection from "@/components/app/projects-section";
 
 export default function HomePage() {
     return (
-        <section>
-            <p className="text-3xl font-bold underline">Home Page</p>
-
-            <Link to="/links">Go to my links.</Link>
+        <section id="home-root" className="h-screen w-full">
+            <HeroSection />
+            <AboutSection />
+            <ExploreSection />
+            <ProjectsSection />
+            <ContactsSection />
         </section>
     );
 }
+

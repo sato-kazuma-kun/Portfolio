@@ -1,17 +1,25 @@
 import { useTheme } from "@/providers/theme";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
+import { Toggle } from "@/components/ui/toggle";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme();
 
   return (
-    <div className="flex items-center space-x-2">
-      <Switch
-        checked={theme === 'dark'}
-        onCheckedChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-        id="theme-switch" />
-      <Label htmlFor="theme-switch">{theme === 'dark' ? 'Dark' : 'Light'} Mode</Label>
+    <div className="flex items-center">
+      <Toggle
+        aria-label="Toggle theme"
+        pressed={theme === 'dark'}
+        variant={'outline'}
+        className="data-[state=on]:bg-transparent data-[state=on]:text-foreground"
+        onPressedChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      >
+        {theme === 'dark' ? (
+          <MoonIcon />
+        ) : (
+          <SunIcon />
+        )}
+      </Toggle>
     </div>
   );
 }
