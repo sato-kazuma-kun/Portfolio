@@ -62,5 +62,14 @@ export const Kazuma: KazumaInterface = {
         links: "/links",
         x: 'https://x.com/@OtakuBoy00701',
         linkedin: 'https://www.linkedin.com/in/kazuma-sato-348b792b5/'
-    }
+    },
+    social_links: [
+        { icon: { light: '/assets/twitter.png', dark: '/assets/twitter.png' }, title: 'X', link: 'https://x.com/@OtakuBoy00701' },
+        { icon: { light: '/assets/Instagram_icon.webp', dark: '/assets/Instagram_icon.webp' }, title: 'Instagram', link: 'https://www.instagram.com/__kana.arima' },
+        { icon: { light: '/assets/Instagram_icon.webp', dark: '/assets/Instagram_icon.webp' }, title: 'Instagram (Personal)', link: 'https://www.instagram.com/_kazuma_sama' },
+        { icon: { light: '/assets/facebook(1).png', dark: '/assets/facebook(1).png' }, title: 'Facebook', link: 'https://www.facebook.com/satou.kazu.kun' },
+        { icon: { light: '/assets/youtube.png', dark: '/assets/youtube.png' }, title: 'YouTube', link: 'https://www.youtube.com/@_kazuma-kun' },
+        { icon: { light: '/assets/github-mark.png', dark: '/assets/github-mark.png' }, title: 'Github', link: 'https://github.com/sato-kazuma-kun' },
+        { icon: { light: '/assets/linkedin-icon.png', dark: '/assets/linkedin-icon.png' }, title: 'LinkedIn', link: 'https://www.linkedin.com/in/kazuma-sato-348b792b5/' },
+    ]
 };

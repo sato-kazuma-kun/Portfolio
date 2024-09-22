@@ -36,5 +36,10 @@ export interface Kazuma {
         linkedin?: string;
         links: '/links';
     };
+    social_links: {
+        icon: { dark: string, light: string; };
+        title: string;
+        link: string;
+    }[];
 }
 

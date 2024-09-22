@@ -7,6 +7,9 @@ export default {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				kite: ['KiteOne', 'sans-serif'], // 'sans-serif' as a fallback
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',

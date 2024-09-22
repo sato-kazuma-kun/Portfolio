@@ -1,0 +1,84 @@
+import { ShareIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import * as React from "react";
+
+import { cn } from "@/lib/utils";
+import useMediaQuery from '@/hooks/useMediaQuery';
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/components/ui/drawer";
+
+export default function LinksShareDialog() {
+    const [open, setOpen] = React.useState(false);
+    const isDesktop = useMediaQuery("(min-width: 768px)");
+
+    if (isDesktop) {
+        return (
+            <Dialog open={open} onOpenChange={setOpen}>
+                <DialogTrigger asChild>
+                    <Button id='share-button' onClick={() => { console.log("Share button clicked!"); }} variant={'secondary'} size={'icon'} className='!text-white !transition-all !duration-300 !rounded-full !h-9 !px-[0.60rem] !bg-[#1a1a1a] !bg-opacity-35 hover:!bg-opacity-25'>
+                        <ShareIcon />
+                    </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Edit profile</DialogTitle>
+                        <DialogDescription>
+                            Make changes to your profile here. Click save when you're done.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <ProfileForm />
+                </DialogContent>
+            </Dialog>
+        );
+    }
+
+    return (
+        <Drawer open={open} onOpenChange={setOpen}>
+            <DrawerTrigger asChild>
+                <Button id='share-button' onClick={() => { console.log("Share button clicked!"); }} variant={'secondary'} size={'icon'} className='!text-white !transition-all !duration-300 !rounded-full !h-9 !px-[0.60rem] !bg-[#1a1a1a] !bg-opacity-35 hover:!bg-opacity-25'>
+                    <ShareIcon />
+                </Button>
+            </DrawerTrigger>
+            <DrawerContent>
+                <DrawerHeader className="text-left">
+                    <DrawerTitle>Edit profile</DrawerTitle>
+                    <DrawerDescription>
+                        Make changes to your profile here. Click save when you're done.
+                    </DrawerDescription>
+                </DrawerHeader>
+                <ProfileForm className="px-4" />
+                <DrawerFooter className="pt-2">
+                    <DrawerClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                    </DrawerClose>
+                </DrawerFooter>
+            </DrawerContent>
+        </Drawer>
+    );
+}
+
+function ProfileForm({ className }: React.ComponentProps<"form">) {
+    return (
+        <form className={cn("grid items-start gap-4", className)}>
+            <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                {/* <Input type="email" id="email" defaultValue="shadcn@example.com" /> */}
+            </div>
+            <div className="grid gap-2">
+                <Label htmlFor="username">Username</Label>
+                {/* <Input id="username" defaultValue="@shadcn" /> */}
+            </div>
+            <Button type="submit">Save changes</Button>
+        </form>
+    );
+}
