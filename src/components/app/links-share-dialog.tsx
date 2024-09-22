@@ -1,22 +1,50 @@
-import { ShareIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
-import * as React from "react";
+import user from '/assets/user.jpeg';
 
+import { Link2Icon, MailIcon, ShareIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import * as React from "react";
 import { cn } from "@/lib/utils";
 import useMediaQuery from '@/hooks/useMediaQuery';
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { Kazuma } from '@/constants/about-me';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { copyString } from '@/utils';
 
+type ShareProps = {
+    [key: string]: {
+        icon_node: React.ReactNode,
+        action: ({ text, url }: { text: string; url: string; }) => void,
+    };
+}[];
+
+const ShareURL = 'http://localhost:3000/links';
+const ShareText = 'Check out Kazuma\'s social media profiles';
+
+const SHARE: ShareProps = [
+    {
+        "Copy link": {
+            icon_node: <Link2Icon height={30} width={30} />,
+            action: function ({ url }) { copyString(url); },
+        },
+        "WhatsApp": {
+            icon_node: <img src='/assets/whatsapp-logo.png' className='w-[30px] h-[30px]' alt=' WhatsApp icon' />,
+            action: function ({ text, url }) { window.open(`https://wa.me/?text=${text} - ${url}`, '_blank'); },
+        },
+        "Email": {
+            icon_node: <MailIcon height={30} width={30} />,
+            action: function ({ text, url }) { window.open(`mailto:?subject=${encodeURIComponent(text)}&body=${encodeURIComponent(url)}`, '_blank'); },
+        },
+        "X": {
+            icon_node: <img src='/assets/x-brand.svg' className='w-[30px] h-[30px] bg-white rounded-sm' alt='Twitter icon' />,
+            action: function ({ text, url }) { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' - ')}&url=${encodeURIComponent(url)}`, '_blank'); },
+        },
+        "iMessage": {
+            icon_node: <img src='/assets/iMessage.png' className='w-[30px] h-[30px]' alt='iMessage icon' />,
+            action: function ({ text, url }) { window.open(`sms:&body=${encodeURIComponent(text + ' - ')} ${encodeURIComponent(url)}`, '_blank'); },
+        }
+    }
+];
 export default function LinksShareDialog() {
     const [open, setOpen] = React.useState(false);
     const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -25,18 +53,15 @@ export default function LinksShareDialog() {
         return (
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <Button id='share-button' onClick={() => { console.log("Share button clicked!"); }} variant={'secondary'} size={'icon'} className='!text-white !transition-all !duration-300 !rounded-full !h-9 !px-[0.60rem] !bg-[#1a1a1a] !bg-opacity-35 hover:!bg-opacity-25'>
+                    <Button id='share-button' variant={'secondary'} size={'icon'} className='!text-white !transition-all !duration-300 !rounded-full !h-9 !px-[0.60rem] !bg-[#1a1a1a] !bg-opacity-35 hover:!bg-opacity-25'>
                         <ShareIcon />
                     </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="w-full font-kite">
                     <DialogHeader>
-                        <DialogTitle>Edit profile</DialogTitle>
-                        <DialogDescription>
-                            Make changes to your profile here. Click save when you're done.
-                        </DialogDescription>
+                        <DialogTitle>Share</DialogTitle>
                     </DialogHeader>
-                    <ProfileForm />
+                    <ShareForm />
                 </DialogContent>
             </Dialog>
         );
@@ -45,18 +70,15 @@ export default function LinksShareDialog() {
     return (
         <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
-                <Button id='share-button' onClick={() => { console.log("Share button clicked!"); }} variant={'secondary'} size={'icon'} className='!text-white !transition-all !duration-300 !rounded-full !h-9 !px-[0.60rem] !bg-[#1a1a1a] !bg-opacity-35 hover:!bg-opacity-25'>
+                <Button id='share-button' variant={'secondary'} size={'icon'} className='!text-white !transition-all !duration-300 !rounded-full !h-9 !px-[0.60rem] !bg-[#1a1a1a] !bg-opacity-35 hover:!bg-opacity-25'>
                     <ShareIcon />
                 </Button>
             </DrawerTrigger>
-            <DrawerContent>
+            <DrawerContent className='font-kite'>
                 <DrawerHeader className="text-left">
-                    <DrawerTitle>Edit profile</DrawerTitle>
-                    <DrawerDescription>
-                        Make changes to your profile here. Click save when you're done.
-                    </DrawerDescription>
+                    <DrawerTitle>Share</DrawerTitle>
                 </DrawerHeader>
-                <ProfileForm className="px-4" />
+                <ShareForm className="px-4" />
                 <DrawerFooter className="pt-2">
                     <DrawerClose asChild>
                         <Button variant="outline">Cancel</Button>
@@ -67,18 +89,38 @@ export default function LinksShareDialog() {
     );
 }
 
-function ProfileForm({ className }: React.ComponentProps<"form">) {
+function ShareForm({ className }: React.ComponentProps<"section">) {
     return (
-        <form className={cn("grid items-start gap-4", className)}>
-            <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                {/* <Input type="email" id="email" defaultValue="shadcn@example.com" /> */}
+        <section className={cn("", className)}>
+            <div className="flex flex-col gap-y-8">
+                <div className='bg-[#342a2b] flex flex-col items-center justify-center rounded-md py-8 gap-y-4'>
+                    <img
+                        src={user}
+                        className='w-20 h-20 rounded-full'
+                    />
+                    <p className="text-center font-semibold text-2xl md:text-3xl !text-white">{Kazuma.name}</p>
+                </div>
+
+                <div className='flex items-center justify-center'>
+                    <Carousel className="w-[calc(100%_-_100px)]">
+                        <CarouselContent>
+                            {Object.entries(SHARE[0]).map(([key, value], index) => (
+                                <CarouselItem key={index} className='basis-1/3'>
+                                    <div
+                                        onClick={() => value.action({ text: ShareText, url: ShareURL })}
+                                        className="p-1 flex gap-y-1 flex-col flex-nowrap items-center justify-center cursor-pointer select-none"
+                                    >
+                                        {value.icon_node}
+                                        <span className="text-sm">{key}</span>
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </Carousel>
+                </div>
             </div>
-            <div className="grid gap-2">
-                <Label htmlFor="username">Username</Label>
-                {/* <Input id="username" defaultValue="@shadcn" /> */}
-            </div>
-            <Button type="submit">Save changes</Button>
-        </form>
+        </section>
     );
 }

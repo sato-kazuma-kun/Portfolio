@@ -9,6 +9,7 @@ import { ChevronDownIcon } from 'lucide-react';
 import { useScrollToSection } from '@/hooks/useScrollToSection';
 import Title from '@/components/ui/title';
 import { useTheme } from '@/providers/theme';
+import { toast } from "sonner";
 
 export default function HeroSection() {
     const externalNavigate = useExternalNavigate();
@@ -29,8 +30,8 @@ export default function HeroSection() {
                 <Title varient='title' fullWidth color='pink' className={`text-center`}>{Kazuma.name}</Title>
                 <Title varient='subtitle' className={`text-center`}>{Kazuma.profession}</Title>
                 <span className='mt-4 mb-2 flex flex-row gap-x-2'>
-                    <Button className='rounded-full px-6 py-6 border-[2px]' variant='outline'><p className='font-semibold'>Download CV</p></Button>
-                    <Button className='rounded-full px-6 py-6 border-[2px] border-transparent' variant='default'><p className='font-semibold' onClick={() => scrollToSection('contacts')}>Contact Info</p></Button>
+                    <Button onClick={() => { toast('CV not available.'); }} className='rounded-full px-6 py-6 border-[2px]' variant='outline'><p className='font-semibold'>Download CV</p></Button>
+                    <Button onClick={() => scrollToSection('contacts')} className='rounded-full px-6 py-6 border-[2px] border-transparent' variant='default'><p className='font-semibold'>Contact Info</p></Button>
                 </span>
                 <Button onClick={() => externalNavigate('https://github.com/sato-kazuma-kun', { external: true, newTab: true })} variant='ghost' className='rounded-full w-12 h-12 p-0 py-0 px-0'>
                     <img src={theme === 'dark' ? githubDark : githubWhite} className='p-2 w-10 h-10' />

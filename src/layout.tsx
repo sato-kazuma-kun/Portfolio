@@ -77,7 +77,7 @@ export default function RootLayout() {
                 <div className={`md:hidden z-30 ${location.pathname === '/links' ? '!hidden' : ''}`}>
                     <NavigationSheet />
                 </div>
-                <div id='header-title-container' className='z-30'>
+                <div id='header-title-container' className='z-30 cursor-pointer select-none' onClick={() => scrollToSection('hero')}>
                     <p id='header-title' className={`tracking-tight inline font-semibold to-[#4B4B4B] from-[#FFFFFF] bg-clip-text text-transparent bg-gradient-to-b sm:!text-3xl lg:!text-3xl !text-3xl xl:!text-3xl md:!text-3xl`}>{Kazuma.name}</p>
                 </div>
                 <div className='absolute left-[16px] right-[16px] h-full flex justify-center items-center -z-10'>
