@@ -18,7 +18,7 @@ type ShareProps = {
     };
 }[];
 
-const ShareURL = 'http://localhost:3000/links';
+const ShareURL = 'https://sato-kazuma.vercel.app/links';
 const ShareText = 'Check out Kazuma\'s social media profiles';
 
 const SHARE: ShareProps = [
