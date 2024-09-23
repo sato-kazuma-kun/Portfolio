@@ -5,6 +5,15 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        // Only define for JavaScript files
+        entryFileNames: 'src/[name].js',    // JavaScript files go to 'src'
+        chunkFileNames: 'src/[name]-[hash].js',  // Dynamic chunks also go to 'src'
+      }
+    }
+  },
   plugins: [
     react(),
     VitePWA({
