@@ -15,7 +15,10 @@ import {
 import { MenuIcon } from 'lucide-react';
 import { useScrollToSection } from '@/hooks/useScrollToSection';
 import { ThemeToggle } from '@/components/theme-toggle';
-import LinksShareDialog from './components/app/links-share-dialog';
+import LinksShareDialog from '@/components/app/links-share-dialog';
+import PageLoading from '@/components/app/page-loading';
+import ErrorBoundary from '@/error';
+import Error from '@/components/app/error';
 
 export default function RootLayout() {
     const scrollToSection = useScrollToSection();
@@ -28,6 +31,7 @@ export default function RootLayout() {
     const [tryAgain, setTryAgain] = useState<number>(0);
 
     useEffect(() => {
+        if (location.pathname !== '/links') return;
         setProfileSection(document.getElementById('links_profile_pic') as HTMLImageElement);
 
         if (profileSection) {
@@ -61,6 +65,7 @@ export default function RootLayout() {
     }, [location.pathname, profileSection]);
 
     useEffect(() => {
+        if (location.pathname !== '/links') return;
         if (profileSection !== null) return;
 
         const profile = document.getElementById('links_profile_pic') as HTMLImageElement | null;
@@ -69,7 +74,7 @@ export default function RootLayout() {
         } else {
             setTryAgain(tryAgain + 1);
         }
-    }, [profileSection, tryAgain]);
+    }, [profileSection, tryAgain, location.pathname]);
 
     return (
         <section className='h-screen small-container mx-auto'>
@@ -114,12 +119,11 @@ export default function RootLayout() {
                 </div>
             </section>
 
-            <React.Suspense
-                fallback={
-                    <p>Loading...</p>
-                }>
-                <Outlet />
-            </React.Suspense>
+            <ErrorBoundary fallback={<Error />}>
+                <React.Suspense fallback={<PageLoading />}>
+                    <Outlet />
+                </React.Suspense>
+            </ErrorBoundary>
 
             <Toaster />
         </section >

@@ -44,8 +44,8 @@ function AboutMeCard() {
     const { theme } = useTheme();
 
     return (
-        <div className='flex flex-row gap-x-2 w-full items-center justify-center'>
-            <Card className="w-[50%] xl:w-[350px]">
+        <div className='flex flex-col gap-y-2 sm:flex-row sm:gap-x-2 w-full items-center justify-center'>
+            <Card className="w-full sm:w-[50%] xl:w-[350px]">
                 <CardContent className='flex w-full h-full items-center flex-col flex-nowrap justify-center p-0 py-2'>
                     <Experience theme={theme} />
                     <Title color='yellow' varient='subtitle' fullWidth={true} className={`!text-[1rem] md:!text-xl my-2 text-center`}>Experience</Title>
@@ -55,7 +55,7 @@ function AboutMeCard() {
                 </CardContent>
             </Card>
 
-            <Card className="w-[50%] xl:w-[350px]">
+            <Card className="w-full sm:w-[50%] xl:w-[350px]">
                 <CardContent className='flex w-full h-full items-center flex-col flex-nowrap justify-center p-0 py-2'>
                     <Education theme={theme} />
                     <Title color='yellow' varient='subtitle' fullWidth={true} className={`!text-[1rem] md:!text-xl my-2 text-center`}>Education</Title>
