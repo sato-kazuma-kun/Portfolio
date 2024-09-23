@@ -77,7 +77,7 @@ export default function RootLayout() {
     }, [profileSection, tryAgain, location.pathname]);
 
     return (
-        <section className='h-screen small-container mx-auto'>
+        <section className='small-container mx-auto'>
             <section id="nav" className={`fixed small-container z-50 backdrop-blur-lg top-0 left-0 right-0 flex flex-row justify-normal gap-x-4 md:gap-x-0 md:justify-between ${location.pathname === '/links' ? '!justify-end' : ''} h-[64px] items-center`} >
                 <div className={`md:hidden z-30 ${location.pathname === '/links' ? '!hidden' : ''}`}>
                     <NavigationSheet />

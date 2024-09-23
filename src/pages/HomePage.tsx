@@ -6,7 +6,7 @@ import ProjectsSection from "@/components/app/projects-section";
 
 export default function HomePage() {
     return (
-        <section id="home-root" className="h-screen w-full">
+        <section id="home-root" className="w-full">
             <HeroSection />
             <AboutSection />
             <ExploreSection />

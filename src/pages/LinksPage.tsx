@@ -92,7 +92,7 @@ export default function LinksPage() {
     };
 
     return (
-        <section id='links-root' className="h-screen w-full mt-[64px]">
+        <section id='links-root' className="w-full mt-[64px]">
             <section className="min-h-screen w-full items-center flex flex-col justify-center gap-x-20 relative">
 
                 <div className='w-full mb-[64px]'>
