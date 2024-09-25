@@ -1,50 +1,99 @@
-# React + TypeScript + Vite
+# Kazuma's Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the code for my personal portfolio website, built using modern web technologies including Vite, Tailwind CSS, Shadcn UI, and Bun.
 
-Currently, two official plugins are available:
+## 🛠️ Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite**: For fast development and build processes.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Shadcn UI**: For building beautiful and accessible user interfaces.
+- **Bun**: Super-fast JavaScript runtime and package manager.
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+.
+├── .gitignore                      
+├── bun.lockb
+├── components.json
+├── eslint.config.js
+├── index.html
+├── LICENSE
+├── package.json
+├── postcss.config.js
+├── README.md
+├── tailwind.config.js
+├── tsconfig.app.json
+├── tsconfig.app.tsbuildinfo
+├── tsconfig.json
+├── tsconfig.node.json
+├── tsconfig.node.tsbuildinfo
+├── vercel.json
+├── vite.config.ts
+├── public                      # Public assets (favicon, images, etc.)
+└── src
+    ├── App.tsx
+    ├── error.tsx
+    ├── index.css
+    ├── layout.tsx
+    ├── main.tsx
+    ├── vite-env.d.ts
+    ├── components              # Reusable UI components, divided into `app` and `ui`.
+    ├── constants               # Static values and configuration constants
+    ├── hooks                   # Contains images, fonts, and other static assets.
+    ├── icons                   # SVG and icon components.
+    ├── lib                     # Contains third-party code sourced from external libraries.
+    ├── pages                   # Page components for different routes.
+    ├── providers               # Context and application-wide providers.
+    ├── types                   # TypeScript types and interfaces
+    └── utils                   # Helper functions and general utilities
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🚀 Installation & Setup
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+To run this project locally, you'll need Bun installed. You can install it from the [Bun website](https://bun.sh).
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/sato-kazuma/Portfolio.git
+cd Portfolio
+```
+
+### 2. Install dependencies
+
+```bash
+bun install
+```
+
+### 3. Run the development server
+
+```bash
+bun run dev
+```
+This will start the development server on ``http://localhost:5173.``
+
+### 🌐 Deployment
+This website is deployed using __Vercel__ for fast, global deployment.
+
+#### Building for production
+
+```bash
+bun run build
+```
+The built assets will be generated in the ``dist/`` folder, ready for deployment.
+
+### 🎨 Styling & UI Components
+
+The project uses __Tailwind CSS__ for styling and __Shadcn UI__ for components. You can easily extend or modify the UI by customizing the styles or creating new components in the ``src/components`` directory.
+
+### 🔗 Social Media Links
+
+Check out my social media profiles [here](https://sato-kazuma.vercel.app/links).
+
+### 📝 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+```vbnet
+This `README.md` provides an overview of the tech stack, project structure, and how to set up the project locally. Let me know if you'd like any changes!
 ```
