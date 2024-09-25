@@ -1,3 +1,5 @@
+'use client';
+
 import SectionTitle from "@/components/app/section-title";
 import { Button } from "@/components/ui/button";
 import { ChevronDownIcon } from "lucide-react";

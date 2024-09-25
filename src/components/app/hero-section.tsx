@@ -1,6 +1,4 @@
-import user from '/assets/user.jpeg';
-import githubDark from '/assets/github-mark-white.png';
-import githubWhite from '/assets/github-mark.png';
+'use client';
 
 import { Kazuma } from '@/constants/about-me';
 import { Button } from '@/components/ui/button';
@@ -8,13 +6,17 @@ import useExternalNavigate from '@/hooks/useExternalNavigation';
 import { ChevronDownIcon } from 'lucide-react';
 import { useScrollToSection } from '@/hooks/useScrollToSection';
 import Title from '@/components/ui/title';
-import { useTheme } from '@/providers/theme';
+import { useTheme } from "next-themes";
 import { toast } from "sonner";
 
 export default function HeroSection() {
     const externalNavigate = useExternalNavigate();
     const scrollToSection = useScrollToSection();
-    const { theme } = useTheme();
+    const { theme, systemTheme } = useTheme();
+
+    const user = '/assets/user.jpeg';
+    const githubDark = '/assets/github-mark-white.png';
+    const githubWhite = '/assets/github-mark.png';
 
     return (
         <section id='hero' className="min-h-screen w-full items-center flex flex-col md:flex-row justify-center gap-x-20 relative">
@@ -26,7 +28,7 @@ export default function HeroSection() {
             </div>
 
             <div className='flex flex-nowrap flex-col items-center justify-center pt-4 md:pt-0'>
-                <Title varient='info' className='text-center'>Hello , I'm</Title>
+                <Title varient='info' className='text-center'>Hello , I&apos;m</Title>
                 <Title varient='title' fullWidth color='pink' className={`text-center`}>{Kazuma.name}</Title>
                 <Title varient='subtitle' className={`text-center`}>{Kazuma.profession}</Title>
                 <span className='mt-4 mb-2 flex flex-row gap-x-2'>
@@ -34,7 +36,7 @@ export default function HeroSection() {
                     <Button onClick={() => scrollToSection('contacts')} className='rounded-full px-6 py-6 border-[2px] border-transparent' variant='default'><p className='font-semibold'>Contact Info</p></Button>
                 </span>
                 <Button onClick={() => externalNavigate('https://github.com/sato-kazuma-kun', { external: true, newTab: true })} variant='ghost' className='rounded-full w-12 h-12 p-0 py-0 px-0'>
-                    <img src={theme === 'dark' ? githubDark : githubWhite} className='p-2 w-10 h-10' />
+                    <img src={theme === 'dark' ? githubDark : theme === 'light' ? githubWhite : systemTheme !== undefined ? systemTheme === 'dark' ? githubDark : githubWhite : githubDark} className='p-2 w-10 h-10' />
                 </Button>
             </div>
 

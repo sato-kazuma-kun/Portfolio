@@ -1,4 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+"use client";
+
+import { useRouter } from "next/navigation";
 
 interface NavigateOptions {
     external?: boolean;         // Whether the link is external or internal
@@ -11,22 +13,26 @@ interface NavigateOptions {
  * @returns A function that takes a URL and options to navigate accordingly.
  */
 const useExternalNavigate = () => {
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const navigateTo = (url: string, options?: NavigateOptions) => {
         if (options?.external) {
             // Handle external navigation
             if (options.newTab) {
-                window.open(url, '_blank', 'noopener,noreferrer');
+                if (typeof window !== 'undefined') {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                }
             } else {
-                window.location.href = url;
+                if (typeof window !== 'undefined') {
+                    window.location.href = url;
+                }
             }
         } else {
             // Handle internal navigation using react-router-dom's useNavigate
             if (options?.replace) {
-                navigate(url, { replace: true });
+                router.replace(url);
             } else {
-                navigate(url);
+                router.push(url);
             }
         }
     };

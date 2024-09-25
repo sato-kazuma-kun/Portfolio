@@ -1,10 +1,9 @@
-import { Theme } from "@/providers/theme";
+'use client';
 
-export const CheckmarkIcon = ({ theme }: { theme: Theme; }) => {
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
+import { useTheme } from "next-themes";
+
+export const CheckmarkIcon = () => {
+    const { theme, systemTheme } = useTheme();
 
     const fillColor = theme === 'dark' ? '#FFFFFF' : theme === 'light' ? '#000000' : systemTheme;
     const foregroundColor = theme === 'dark' ? '#000000' : theme === 'light' ? '#FFFFFF' : systemTheme;

@@ -1,4 +1,4 @@
-import user from '/assets/user.jpg';
+'use client';
 
 import { Kazuma } from '@/constants/about-me';
 import { Button } from '@/components/ui/button';
@@ -9,11 +9,11 @@ import Education from '@/icons/education';
 import Experience from '@/icons/experience';
 import { Card, CardContent } from '@/components/ui/card';
 import React from 'react';
-import { useTheme } from '@/providers/theme';
 import SectionTitle from '@/components/app/section-title';
 
 export default function AboutSection() {
     const scrollToSection = useScrollToSection();
+    const user = '/assets/user.jpeg';
 
     return (
         <section id='about' className="w-full min-h-screen relative pb-[calc(64px_+_16px)] pt-[64px]"> {/* "pb-[calc(10px_+_16px_+_16px_+_16px_+10px)]" */}
@@ -41,13 +41,11 @@ export default function AboutSection() {
 
 
 function AboutMeCard() {
-    const { theme } = useTheme();
-
     return (
         <div className='flex flex-col gap-y-2 sm:flex-row sm:gap-x-2 w-full items-center justify-center'>
             <Card className="w-full sm:w-[50%] xl:w-[350px]">
                 <CardContent className='flex w-full h-full items-center flex-col flex-nowrap justify-center p-0 py-2'>
-                    <Experience theme={theme} />
+                    <Experience />
                     <Title color='yellow' varient='subtitle' fullWidth={true} className={`!text-[1rem] md:!text-xl my-2 text-center`}>Experience</Title>
 
                     <Title varient='info' className='!font-medium !text-lg !text-ellipsis !line-clamp-1 text-center' fullWidth={true}>{String(Kazuma.experience[0].timespan) + '+ years'}</Title>
@@ -57,7 +55,7 @@ function AboutMeCard() {
 
             <Card className="w-full sm:w-[50%] xl:w-[350px]">
                 <CardContent className='flex w-full h-full items-center flex-col flex-nowrap justify-center p-0 py-2'>
-                    <Education theme={theme} />
+                    <Education />
                     <Title color='yellow' varient='subtitle' fullWidth={true} className={`!text-[1rem] md:!text-xl my-2 text-center`}>Education</Title>
 
                     <Title varient='info' className='!font-medium !text-lg !text-ellipsis !line-clamp-1 text-center' fullWidth={true}>Student of</Title>
@@ -78,7 +76,7 @@ function SpeechAndQuote() {
             ))}
 
             {Kazuma.quote.map((q, index) => (
-                <p key={index} className='mt-5 italic font-semibold text-justify'>"{q}" - Kazuma kun</p>
+                <p key={index} className='mt-5 italic font-semibold text-justify'>&quot;{q}&quot; - Kazuma kun</p>
             ))}
         </React.Fragment>
     );

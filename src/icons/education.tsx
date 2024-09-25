@@ -1,11 +1,9 @@
-import { Theme } from '@/providers/theme';
-import React from 'react';
+'use client';
 
-const EducationIcon: React.FC<{ theme: Theme; color?: string; }> = ({ theme, color }) => {
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
+import { useTheme } from 'next-themes';
+
+const EducationIcon: React.FC<{ color?: string; }> = ({ color }) => {
+    const { theme, systemTheme } = useTheme();
 
     const fillColor = theme === 'dark' ? '#FFFFFF' : theme === 'light' ? '#000000' : systemTheme;
 

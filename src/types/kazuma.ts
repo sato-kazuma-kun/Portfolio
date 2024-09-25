@@ -11,6 +11,7 @@ export type Explore = {
 
 export interface Kazuma {
     name: string,
+    description: string,
     profession: Profession;
     education: string;
     experience: {

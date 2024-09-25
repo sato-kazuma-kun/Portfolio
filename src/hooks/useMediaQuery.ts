@@ -1,11 +1,19 @@
+'use client';
+
 import { useState, useEffect } from "react";
 
 function useMediaQuery(query: string) {
-    // State to store if the media query is matched
-    const [matches, setMatches] = useState<boolean>(() => window.matchMedia(query).matches);
+    // State to store if the media query is matched, initializing with `false`
+    const [matches, setMatches] = useState<boolean>(false);
 
     useEffect(() => {
+        // Ensure that window is defined before proceeding
+        if (typeof window === 'undefined') return;
+
         const mediaQueryList = window.matchMedia(query);
+
+        // Set the initial state based on the media query match
+        setMatches(mediaQueryList.matches);
 
         // Update the state whenever the media query result changes
         const handleChange = (event: MediaQueryListEvent) => {

@@ -1,10 +1,12 @@
-import user from '/assets/user.jpeg';
+'use client';
 
 import Footer from "@/components/app/footer";
 import { Kazuma } from "@/constants/about-me";
 import { useState, useEffect } from 'react';
 
-export default function LinksPage() {
+export default function LinksSection() {
+    const user = '/assets/user.jpeg';
+
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -16,19 +18,27 @@ export default function LinksPage() {
 
     useEffect(() => {
         const checkIfMobile = () => {
-            const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
-            const isTouchDevice = /android|iPad|iPhone|iPod/i.test(userAgent);
-            const screenWidth = window.innerWidth;
+            if (typeof window !== 'undefined') {
+                /* eslint-disable @typescript-eslint/no-explicit-any */
+                const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+                const isTouchDevice = /android|iPad|iPhone|iPod/i.test(userAgent);
+                const screenWidth = window.innerWidth;
 
-            // Consider it mobile if it's a touch device or has a small screen
-            setIsMobile(isTouchDevice || screenWidth < 768);
+                // Consider it mobile if it's a touch device or has a small screen
+                setIsMobile(isTouchDevice || screenWidth < 768);
+            }
         };
 
         checkIfMobile();
-        window.addEventListener('resize', checkIfMobile);
+
+        if (typeof window !== 'undefined') {
+            window.addEventListener('resize', checkIfMobile);
+        }
 
         return () => {
-            window.removeEventListener('resize', checkIfMobile);
+            if (typeof window !== 'undefined') {
+                window.removeEventListener('resize', checkIfMobile);
+            }
         };
     }, []);
 

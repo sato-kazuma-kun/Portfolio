@@ -1,6 +1,5 @@
 import Title from "@/components/ui/title";
 
-
 export default function SectionTitle({ info, title, style, classNames }: { info: string, title: string; style?: string, classNames?: { info?: string, title?: string; }; }) {
     return (
         <div className={`w-full ${style}`}>

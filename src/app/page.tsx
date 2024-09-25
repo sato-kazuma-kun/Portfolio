@@ -5,14 +5,14 @@ import HeroSection from "@/components/app/hero-section";
 import ProjectsSection from "@/components/app/projects-section";
 
 export default function HomePage() {
-    return (
-        <section id="home-root" className="w-full">
-            <HeroSection />
-            <AboutSection />
-            <ExploreSection />
-            <ProjectsSection />
-            <ContactsSection />
-        </section>
-    );
+  return (
+    <section id="home-root" className="w-full">
+      <HeroSection />
+      <AboutSection />
+      <ExploreSection />
+      <ProjectsSection />
+      <ContactsSection />
+    </section>
+  );
 }
 

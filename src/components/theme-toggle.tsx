@@ -1,9 +1,11 @@
-import { useTheme } from "@/providers/theme";
+'use client';
+
+import { useTheme } from "next-themes";
 import { Toggle } from "@/components/ui/toggle";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
 export function ThemeToggle() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, theme, systemTheme } = useTheme();
 
   return (
     <div id="theme-container" className="flex items-center">
@@ -13,7 +15,7 @@ export function ThemeToggle() {
         pressed={false}
         variant={'outline'}
         className="data-[state=on]:bg-transparent data-[state=on]:text-foreground"
-        onPressedChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        onPressedChange={() => setTheme(theme === 'dark' ? 'light' : theme === 'light' ? 'dark' : systemTheme !== undefined ? systemTheme === 'dark' ? 'light' : 'dark' : 'dark')}
       >
         {theme === 'dark' ? (
           <MoonIcon />

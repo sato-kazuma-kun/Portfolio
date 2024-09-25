@@ -1,19 +1,16 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+import type { Config } from "tailwindcss";
+
+const config: Config = {
 	darkMode: ["class"],
 	content: [
-		"./index.html",
-		"./src/**/*.{js,ts,jsx,tsx}",
+		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	theme: {
 		extend: {
 			fontFamily: {
 				kite: ['KiteOne', 'sans-serif'], // 'sans-serif' as a fallback
-			},
-			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
 			},
 			colors: {
 				background: 'hsl(var(--background))',
@@ -57,6 +54,11 @@ export default {
 					'5': 'hsl(var(--chart-5))'
 				}
 			},
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)'
+			},
 			maxWidth: {
 				'small-container': '100%',
 			},
@@ -64,7 +66,7 @@ export default {
 	},
 	plugins: [
 		require("tailwindcss-animate"),
-		function ({ addComponents }) {
+		function ({ addComponents }: { addComponents: any; }) {
 			addComponents({
 				'.small-container': {
 					maxWidth: '1000px',  // Default for larger screens
@@ -96,5 +98,5 @@ export default {
 			});
 		},
 	],
-}
-
+};
+export default config;

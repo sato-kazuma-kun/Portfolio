@@ -1,4 +1,4 @@
-import user from '/assets/user.jpeg';
+'use client';
 
 import SectionTitle from "@/components/app/section-title";
 import { Button } from "@/components/ui/button";
@@ -6,15 +6,14 @@ import { ChevronUpIcon, MailIcon } from "lucide-react";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Kazuma } from "@/constants/about-me";
-import { Link } from "react-router-dom";
 import X from '@/icons/x';
-import { useTheme } from '@/providers/theme';
 import { LinkedInLogoIcon } from '@radix-ui/react-icons';
 import Footer from './footer';
+import Link from 'next/link';
 
 export default function ContactsSection() {
     const scrollToSection = useScrollToSection();
-    const { theme } = useTheme();
+    const user = '/assets/user.jpeg';
 
     return (
         <section id="contacts" className="min-h-screen w-full relative pb-[calc(64px_+_16px)] pt-[64px]">
@@ -26,28 +25,28 @@ export default function ContactsSection() {
                             {Object.entries(Kazuma.contact_options).map(([key, value]) => (
                                 <div key={key} className="flex items-center justify-start">
                                     {key === 'gmail' && (
-                                        <Link to={value} className="flex flex-row gap-x-2 items-center h-auto p-6 justify-center text-primary underline-offset-4 hover:underline">
+                                        <Link href={value} className="flex flex-row gap-x-2 items-center h-auto p-6 justify-center text-primary underline-offset-4 hover:underline">
                                             <MailIcon size={'36px'} />
                                             <p className='text-base'>{value.slice(7)}</p>
                                         </Link>
                                     )}
 
                                     {key === 'links' && (
-                                        <Link to={value} className="flex flex-row gap-x-2 items-center h-auto p-6 justify-center text-primary underline-offset-4 hover:underline">
+                                        <Link href={value} className="flex flex-row gap-x-2 items-center h-auto p-6 justify-center text-primary underline-offset-4 hover:underline">
                                             <img src={user} className="w-[36px] rounded-md" />
                                             <p className='text-base'>Social Media Profiles</p>
                                         </Link>
                                     )}
 
                                     {key === 'x' && (
-                                        <Link to={value} className="flex flex-row gap-x-2 items-center h-auto p-6 justify-center text-primary underline-offset-4 hover:underline">
-                                            <X theme={theme} />
+                                        <Link href={value} className="flex flex-row gap-x-2 items-center h-auto p-6 justify-center text-primary underline-offset-4 hover:underline">
+                                            <X />
                                             <p className='text-base'>X <span className='text-muted-foreground text-sm'>(Formerly Twitter)</span></p>
                                         </Link>
                                     )}
 
                                     {key === 'linkedin' && (
-                                        <Link to={value} className="flex flex-row gap-x-2 items-center h-auto p-6 justify-center text-primary underline-offset-4 hover:underline">
+                                        <Link href={value} className="flex flex-row gap-x-2 items-center h-auto p-6 justify-center text-primary underline-offset-4 hover:underline">
                                             <LinkedInLogoIcon className='w-[36px] h-[36px]' />
                                             <p className='text-base'>LinkedIn</p>
                                         </Link>

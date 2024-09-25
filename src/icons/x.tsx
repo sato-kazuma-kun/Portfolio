@@ -1,10 +1,9 @@
-import { Theme } from "@/providers/theme";
+'use client';
 
-export default function X({ theme }: { theme: Theme; }) {
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
+import { useTheme } from "next-themes";
+
+export default function X() {
+    const { theme, systemTheme } = useTheme();
 
     const fillColor = theme === 'dark' ? '#FFFFFF' : theme === 'light' ? '#000000' : systemTheme;
 

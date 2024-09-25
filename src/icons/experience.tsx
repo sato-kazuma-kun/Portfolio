@@ -1,10 +1,9 @@
-import { Theme } from "@/providers/theme";
+'use client';
 
-const Experience = ({ theme, color }: { theme: Theme; color?: string; }) => {
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
+import { useTheme } from "next-themes";
+
+const Experience = ({ color }: { color?: string; }) => {
+    const { theme, systemTheme } = useTheme();
 
     const fillColor = theme === 'dark' ? '#FFFFFF' : theme === 'light' ? '#000000' : systemTheme;
 

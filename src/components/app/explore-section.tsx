@@ -1,9 +1,10 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { ChevronDownIcon } from 'lucide-react';
 import { useScrollToSection } from '@/hooks/useScrollToSection';
 import Title from '@/components/ui/title';
 import { CheckmarkIcon } from '@/icons/checkmark';
-import { useTheme } from '@/providers/theme';
 import { Kazuma } from '@/constants/about-me';
 import { Field } from '@/types/kazuma';
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,7 +12,6 @@ import SectionTitle from "@/components/app/section-title";
 
 export default function ExploreSection() {
     const scrollToSection = useScrollToSection();
-    const { theme } = useTheme();
 
     return (
         <section id='explore' className="w-full min-h-screen relative pb-[calc(10px_+_16px_+_16px_+_16px)] pt-[64px]">
@@ -29,7 +29,7 @@ export default function ExploreSection() {
                                     <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-2'>
                                         {Kazuma.explore[typedCategory]?.map((tech, index) => (
                                             <span key={index} className='flex flex-row items-center gap-x-4 my-4'>
-                                                <span className='w-[32px]'><CheckmarkIcon theme={theme} /></span>
+                                                <span className='w-[32px]'><CheckmarkIcon /></span>
                                                 <span className='flex-1 flex flex-col overflow-hidden'>
                                                     <Title varient='info' className='!text-foreground text-ellipsis line-clamp-1'>{tech.technology}</Title>
                                                     <Title varient='info' className='!text-[1rem] !font-medium text-ellipsis line-clamp-1'>{tech.level}</Title>

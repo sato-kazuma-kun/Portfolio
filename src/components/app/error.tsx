@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -7,7 +9,7 @@ export default function Error() {
             <Card className="w-[80%] md:w-[50%] lg:w-[45%] xl:w-[35%]">
                 <CardHeader>
                     <CardTitle className='text-destructive'>Error</CardTitle>
-                    <CardDescription>Something went wrong but it's not your fault!</CardDescription>
+                    <CardDescription>Something went wrong but it&apos;s not your fault!</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <p className='text-center font-semibold'>There has been an unexpected error.</p>

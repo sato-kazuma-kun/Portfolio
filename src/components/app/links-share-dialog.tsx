@@ -1,4 +1,4 @@
-import user from '/assets/user.jpeg';
+'use client';
 
 import { Link2Icon, MailIcon, ShareIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -29,19 +29,19 @@ const SHARE: ShareProps = [
         },
         "WhatsApp": {
             icon_node: <img src='/assets/whatsapp-logo.png' className='w-[30px] h-[30px]' alt=' WhatsApp icon' />,
-            action: function ({ text, url }) { window.open(`https://wa.me/?text=${text} - ${url}`, '_blank'); },
+            action: function ({ text, url }) { if (typeof window !== 'undefined') { window.open(`https://wa.me/?text=${text} - ${url}`, '_blank'); } },
         },
         "Email": {
             icon_node: <MailIcon height={30} width={30} />,
-            action: function ({ text, url }) { window.open(`mailto:?subject=${encodeURIComponent(text)}&body=${encodeURIComponent(url)}`, '_blank'); },
+            action: function ({ text, url }) { if (typeof window !== 'undefined') { window.open(`mailto:?subject=${encodeURIComponent(text)}&body=${encodeURIComponent(url)}`, '_blank'); } },
         },
         "X": {
             icon_node: <img src='/assets/x-brand.svg' className='w-[30px] h-[30px] bg-white rounded-sm' alt='Twitter icon' />,
-            action: function ({ text, url }) { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' - ')}&url=${encodeURIComponent(url)}`, '_blank'); },
+            action: function ({ text, url }) { if (typeof window !== 'undefined') { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' - ')}&url=${encodeURIComponent(url)}`, '_blank'); } },
         },
         "iMessage": {
             icon_node: <img src='/assets/iMessage.png' className='w-[30px] h-[30px]' alt='iMessage icon' />,
-            action: function ({ text, url }) { window.open(`sms:&body=${encodeURIComponent(text + ' - ')} ${encodeURIComponent(url)}`, '_blank'); },
+            action: function ({ text, url }) { if (typeof window !== 'undefined') { window.open(`sms:&body=${encodeURIComponent(text + ' - ')} ${encodeURIComponent(url)}`, '_blank'); } },
         }
     }
 ];
@@ -90,6 +90,8 @@ export default function LinksShareDialog() {
 }
 
 function ShareForm({ className }: React.ComponentProps<"section">) {
+    const user = '/assets/user.jpeg';
+
     return (
         <section className={cn("", className)}>
             <div className="flex flex-col gap-y-8">
