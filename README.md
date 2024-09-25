@@ -1,10 +1,10 @@
 # Kazuma's Portfolio
 
-This repository contains the code for my personal portfolio website, built using modern web technologies including Vite, Tailwind CSS, Shadcn UI, and Bun.
+This repository contains the code for my personal portfolio website, built using modern web technologies including Next.JS, Tailwind CSS, Shadcn UI, and Bun.
 
 ## 🛠️ Technologies Used
 
-- **Vite**: For fast development and build processes.
+- **Next.js**: Optimized for SEO with seamless Vercel integration for fast deployment.
 - **Tailwind CSS**: Utility-first CSS framework for styling.
 - **Shadcn UI**: For building beautiful and accessible user interfaces.
 - **Bun**: Super-fast JavaScript runtime and package manager.
@@ -16,34 +16,23 @@ This repository contains the code for my personal portfolio website, built using
 ├── .gitignore                      
 ├── bun.lockb
 ├── components.json
-├── eslint.config.js
-├── index.html
+├── .eslintrc.json
 ├── LICENSE
 ├── package.json
-├── postcss.config.js
+├── postcss.config.mjs
 ├── README.md
-├── tailwind.config.js
-├── tsconfig.app.json
-├── tsconfig.app.tsbuildinfo
+├── tailwind.config.ts
 ├── tsconfig.json
-├── tsconfig.node.json
-├── tsconfig.node.tsbuildinfo
-├── vercel.json
-├── vite.config.ts
+├── next.config.mjs
+├── next-env.d.ts
 ├── public                      # Public assets (favicon, images, etc.)
 └── src
-    ├── App.tsx
-    ├── error.tsx
-    ├── index.css
-    ├── layout.tsx
-    ├── main.tsx
-    ├── vite-env.d.ts
     ├── components              # Reusable UI components, divided into `app` and `ui`.
     ├── constants               # Static values and configuration constants
     ├── hooks                   # Contains images, fonts, and other static assets.
     ├── icons                   # SVG and icon components.
     ├── lib                     # Contains third-party code sourced from external libraries.
-    ├── pages                   # Page components for different routes.
+    ├── app                     # App components for different routes.
     ├── providers               # Context and application-wide providers.
     ├── types                   # TypeScript types and interfaces
     └── utils                   # Helper functions and general utilities
@@ -56,8 +45,8 @@ To run this project locally, you'll need Bun installed. You can install it from 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/sato-kazuma/Portfolio.git
-cd Portfolio
+git clone https://github.com/sato-kazuma/portfolio.git
+cd portfolio
 ```
 
 ### 2. Install dependencies
@@ -71,7 +60,7 @@ bun install
 ```bash
 bun run dev
 ```
-This will start the development server on ``http://localhost:5173.``
+This will start the development server on ``http://localhost:3000.``
 
 ### 🌐 Deployment
 This website is deployed using __Vercel__ for fast, global deployment.
@@ -81,7 +70,7 @@ This website is deployed using __Vercel__ for fast, global deployment.
 ```bash
 bun run build
 ```
-The built assets will be generated in the ``dist/`` folder, ready for deployment.
+The built assets will be generated in the ``.next/`` folder, ready for deployment.
 
 ### 🎨 Styling & UI Components
 
