@@ -94,6 +94,6 @@ Check out my social media profiles [here](https://sato-kazuma.vercel.app/links).
 ### 📝 License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-```vbnet
-This `README.md` provides an overview of the tech stack, project structure, and how to set up the project locally. Let me know if you'd like any changes!
-```
+``
+This `README.md` provides an overview of the tech stack, project structure, and how to set up the project locally.
+``
