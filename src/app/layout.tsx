@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import { ThemeProvider } from "@/providers/theme";
 import { Kazuma } from "@/constants/about-me";
 import { AppleImage } from "next/dist/lib/metadata/types/extra-types";
+import { headers } from "next/headers";
 
 export const startupImage: AppleImage[] = [
   { url: '/icons/apple-splash-2048-2732.jpg', media: '(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)' },
@@ -42,49 +43,77 @@ export const startupImage: AppleImage[] = [
   { url: '/icons/apple-splash-1136-640.jpg', media: '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)' }
 ];
 
-export const metadata: Metadata = {
-  applicationName: Kazuma.name,
-  title: {
-    default: Kazuma.name,
-    template: `%s - ${Kazuma.name}`,
-  },
-  icons: {
-    icon: "/assets/user.jpeg",
-    apple: "/icons/apple-icon-180.png",
-  },
-  description: Kazuma.description,
-  manifest: "/manifest.json",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: Kazuma.name,
-    startupImage: startupImage,
-  },
-  formatDetection: {
-    telephone: false,
-  },
-  openGraph: {
-    type: "website",
-    siteName: Kazuma.name,
-    title: {
-      default: Kazuma.name,
-      template: `%s - ${Kazuma.name}`,
+export async function metadata(): Promise<Metadata> {
+  const headerList = headers();
+  const pathname = headerList.get("x-current-path");
+  const url = headerList.get("x-current-url");
+
+  const probableURL = 'https://sato-kazuma.vercel.app';
+  const isLinksPage = pathname === '/links';
+  const isPortfolioPage = pathname === '/';
+
+  const title = isLinksPage
+    ? `Links - ${Kazuma.name}`
+    : isPortfolioPage
+      ? `Portfolio - ${Kazuma.name}`
+      : {
+        default: Kazuma.name,
+        template: `%s - ${Kazuma.name}`,
+      };
+  const description = isLinksPage ? Kazuma.linksDescription : Kazuma.description;
+  const applicationName = Kazuma.name;
+  const icon = `${probableURL}/assets/user.jpeg`;
+  const appleIcon = `${probableURL}/icons/apple-icon-180.png`;
+  const twitterHandle = '@OtakuBoy00701';
+
+  return {
+    applicationName: applicationName,
+    title: title,
+    description: description,
+
+    icons: {
+      icon: icon,
+      apple: appleIcon,
     },
-    description: Kazuma.description,
-  },
-  twitter: {
-    card: "summary",
-    title: {
-      default: Kazuma.name,
-      template: `%s - ${Kazuma.name}`,
+
+    manifest: "/manifest.json",
+
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: applicationName,
+      startupImage: startupImage,
     },
-    description: Kazuma.description,
-  },
-};
+
+    formatDetection: {
+      telephone: false,
+    },
+
+    openGraph: {
+      type: "website",
+      url: url || probableURL,
+      siteName: applicationName,
+      title: title,
+      description: description,
+      images: icon,
+    },
+
+    twitter: {
+      card: "summary",
+      title: title,
+      description: description,
+      images: icon,
+      site: twitterHandle,
+      creator: twitterHandle,
+    },
+  };
+}
+
 
 export const viewport: Viewport = {
   themeColor: "#FFFFFF",
 };
+
 
 export default function RootLayout({
   children,

@@ -3,6 +3,7 @@ import { Kazuma as KazumaInterface } from "@/types/kazuma";
 export const Kazuma: KazumaInterface = {
     name: "Kazuma Satō",
     description: "A showcase of my expertise in Fullstack Web and App development, featuring functional and visually appealing applications. This site showcases my skills, adaptability, and dedication to continuous learning and improvement in modern web and app development practices.",
+    linksDescription: "A personalized hub showcasing all of Kazuma's social media profiles and key links.",
     profession: "Student",
     education: "St. John's H.S. School, Barama",
     experience: [
