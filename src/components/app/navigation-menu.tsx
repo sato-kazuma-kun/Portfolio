@@ -16,6 +16,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { MenuIcon } from "lucide-react";
 import { Kazuma } from "@/constants/about-me";
 import Image from "next/image";
+import ENV from "@/root/env.mjs";
 
 export default function NavigationMenu({ children }: { children: React.ReactNode; }) {
     const user = '/assets/user.jpeg';
@@ -30,7 +31,7 @@ export default function NavigationMenu({ children }: { children: React.ReactNode
     const [tryAgain, setTryAgain] = useState<number>(0);
 
     useEffect(() => {
-        if (pathname !== '/links') return;
+        if (pathname !== ENV.routes.links) return;
         setProfileSection(document.getElementById('links_profile_pic') as HTMLImageElement);
 
         if (profileSection) {
@@ -64,7 +65,7 @@ export default function NavigationMenu({ children }: { children: React.ReactNode
     }, [pathname, profileSection]);
 
     useEffect(() => {
-        if (pathname !== '/links') return;
+        if (pathname !== ENV.routes.links) return;
         if (profileSection !== null) return;
 
         const profile = document.getElementById('links_profile_pic') as HTMLImageElement | null;
@@ -77,15 +78,15 @@ export default function NavigationMenu({ children }: { children: React.ReactNode
 
     return (
         <section className='small-container mx-auto'>
-            <section id="nav" className={`fixed small-container z-50 backdrop-blur-lg top-0 left-0 right-0 flex flex-row justify-normal gap-x-4 md:gap-x-0 md:justify-between ${pathname === '/links' ? '!justify-end' : ''} h-[64px] items-center`} >
-                <div className={`md:hidden z-30 ${pathname === '/links' ? '!hidden' : ''}`}>
+            <section id="nav" className={`fixed small-container z-50 backdrop-blur-lg top-0 left-0 right-0 flex flex-row justify-normal gap-x-4 md:gap-x-0 md:justify-between ${pathname === ENV.routes.links ? '!justify-end' : ''} h-[64px] items-center`} >
+                <div className={`md:hidden z-30 ${pathname === ENV.routes.links ? '!hidden' : ''}`}>
                     <NavigationSheet />
                 </div>
                 <div id='header-title-container' className='z-30 cursor-pointer select-none' onClick={() => scrollToSection('hero')}>
                     <p id='header-title' className={`tracking-tight inline font-semibold to-[#4B4B4B] from-[#FFFFFF] bg-clip-text text-transparent bg-gradient-to-b sm:!text-3xl lg:!text-3xl !text-3xl xl:!text-3xl md:!text-3xl`}>{Kazuma.name}</p>
                 </div>
                 <div className='absolute left-[16px] right-[16px] h-full flex justify-center items-center -z-10'>
-                    {pathname === '/links' && (
+                    {pathname === ENV.routes.links && (
                         <Image
                             height={40}
                             width={40}
@@ -96,8 +97,8 @@ export default function NavigationMenu({ children }: { children: React.ReactNode
                     )}
                 </div>
 
-                <div id='nav-container' className={`hidden md:flex gap-x-2 md:flex-row z-30 ${pathname === '/links' ? '!flex' : ''}`}>
-                    {pathname === '/' && (
+                <div id='nav-container' className={`hidden md:flex gap-x-2 md:flex-row z-30 ${pathname === ENV.routes.links ? '!flex' : ''}`}>
+                    {pathname === ENV.routes.portfolio && (
                         Object.entries(PortfolioSections).map(([key, section]) => (
                             <Button aria-label={`Sctoll to ${section.title} section`} variant={'outline'} key={key} onClick={() => scrollToSection(section.id)}>
                                 {section.title}
@@ -105,16 +106,16 @@ export default function NavigationMenu({ children }: { children: React.ReactNode
                         ))
                     )}
                     {Object.entries(NavLinks).map(([key, link]) => (
-                        ((link.href === '/' && pathname === '/') || (link.href === '/links' && pathname === '/links')) ? (null) : (
+                        ((link.href === ENV.routes.portfolio && pathname === ENV.routes.portfolio) || (link.href === ENV.routes.links && pathname === ENV.routes.links)) ? (null) : (
                             <Button aria-label={`Navigate to ${link.title}`} id={key} key={key} variant={'outline'} onClick={() => router.push(link.href)}>
                                 {link.title}
                             </Button>
                         )
                     ))}
 
-                    {pathname === '/' ? (
+                    {pathname === ENV.routes.portfolio ? (
                         <ThemeToggle />
-                    ) : pathname === '/links' ? (
+                    ) : pathname === ENV.routes.links ? (
                         <LinksShareDialog />
                     ) : null}
                 </div>
@@ -145,7 +146,7 @@ function NavigationSheet() {
             </SheetTrigger>
             <SheetContent side={'left'} className='w-60'>
                 <div className="flex flex-col flex-nowrap mt-4">
-                    {pathname === '/' && (
+                    {pathname === ENV.routes.portfolio && (
                         Object.entries(PortfolioSections).map(([key, section]) => (
                             <SheetClose key={key} asChild>
                                 <Button aria-label={`Sctoll to ${section.title} section`} variant={'outline'} className='my-2' onClick={() => scrollToSection(section.id)}>
@@ -156,7 +157,7 @@ function NavigationSheet() {
                     )}
 
                     {Object.entries(NavLinks).map(([key, link]) => (
-                        link.href === '/' && pathname === '/' ? (null) : (
+                        link.href === ENV.routes.portfolio && pathname === ENV.routes.portfolio ? (null) : (
                             <SheetClose key={key} asChild>
                                 <Button aria-label={`Navigate to ${link.title}`} variant={'outline'} className='my-2' onClick={() => router.push(link.href)}>
                                     <p className='w-full text-start'>{link.title}</p>

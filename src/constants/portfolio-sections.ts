@@ -1,3 +1,5 @@
+import ENV from "@/root/env.mjs";
+
 export const PortfolioSections = {
     hero: { title: 'Home', id: 'hero' },
     about: { title: 'About', id: 'about' },
@@ -7,6 +9,6 @@ export const PortfolioSections = {
 };
 
 export const NavLinks = {
-    home: { title: 'Home', href: '/' },
-    links: { title: 'Links', href: '/links' },
+    home: { title: 'Home', href: ENV.routes.portfolio },
+    links: { title: 'Links', href: ENV.routes.links },
 };

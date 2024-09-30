@@ -11,6 +11,7 @@ import { Kazuma } from '@/constants/about-me';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { copyString } from '@/utils';
 import Image from 'next/image';
+import ENV from '@/root/env.mjs';
 
 type ShareProps = {
     [key: string]: {
@@ -19,7 +20,7 @@ type ShareProps = {
     };
 }[];
 
-const ShareURL = 'https://sato-kazuma.vercel.app/links';
+const ShareURL = ENV.site + ENV.routes.links;
 const ShareText = 'Check out Kazuma\'s social media profiles';
 
 const SHARE: ShareProps = [

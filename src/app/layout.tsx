@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/providers/theme";
 import { Kazuma } from "@/constants/about-me";
 import { AppleImage } from "next/dist/lib/metadata/types/extra-types";
 import { headers } from "next/headers";
+import ENV from "@/root/env.mjs";
 
 export const startupImage: AppleImage[] = [
   { url: '/icons/apple-splash-2048-2732.jpg', media: '(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)' },
@@ -48,9 +49,9 @@ export async function metadata(): Promise<Metadata> {
   const pathname = headerList.get("x-current-path");
   const url = headerList.get("x-current-url");
 
-  const probableURL = 'https://sato-kazuma.vercel.app';
-  const isLinksPage = pathname === '/links';
-  const isPortfolioPage = pathname === '/';
+  const probableURL = ENV.site;
+  const isLinksPage = pathname === ENV.routes.links;
+  const isPortfolioPage = pathname === ENV.routes.portfolio;
 
   const title = isLinksPage
     ? `Links - ${Kazuma.name}`

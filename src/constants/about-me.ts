@@ -1,3 +1,4 @@
+import ENV from "@/root/env.mjs";
 import { Kazuma as KazumaInterface } from "@/types/kazuma";
 
 export const Kazuma: KazumaInterface = {
@@ -61,7 +62,7 @@ export const Kazuma: KazumaInterface = {
     ],
     contact_options: {
         gmail: 'mailto:otaku.satoukazuma.002@gmail.com',
-        links: "/links",
+        links: ENV.routes.links,
         x: 'https://x.com/@OtakuBoy00701',
         linkedin: 'https://www.linkedin.com/in/kazuma-sato-348b792b5/'
     },

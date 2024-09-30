@@ -36,7 +36,7 @@ export interface Kazuma {
         gmail?: string;
         x?: string;
         linkedin?: string;
-        links: '/links';
+        links: string;
     };
     social_links: {
         icon: { dark: string, light: string; };
