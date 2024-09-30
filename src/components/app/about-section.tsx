@@ -10,6 +10,7 @@ import Experience from '@/icons/experience';
 import { Card, CardContent } from '@/components/ui/card';
 import React from 'react';
 import SectionTitle from '@/components/app/section-title';
+import Image from 'next/image';
 
 export default function AboutSection() {
     const scrollToSection = useScrollToSection();
@@ -21,7 +22,10 @@ export default function AboutSection() {
 
             <div className='mt-5 flex flex-col lg:flex-row justify-center lg:gap-x-20 items-center'>
                 <div>
-                    <img
+                    <Image
+                        width={400}
+                        height={400}
+                        alt='Kazuma-kun'
                         src={user}
                         className='w-full h-full max-h-52 max-w-52 sm:max-h-72 sm:max-w-72 lg:max-h-80 lg:max-w-80 xl:max-h-96 xl:max-w-96 aspect-square rounded-3xl'
                     />
@@ -33,7 +37,7 @@ export default function AboutSection() {
                 </div>
             </div>
 
-            <Button className='absolute right-[16px] bottom-[16px] rounded-full h-10 w-10 p-2' variant={'outline'} onClick={() => scrollToSection('explore')}><ChevronDownIcon /></Button>
+            <Button className='absolute right-[16px] bottom-[16px] rounded-full h-10 w-10 p-2' variant={'outline'} onClick={() => scrollToSection('explore')} aria-label='Scroll to explore section'><ChevronDownIcon /></Button>
         </section>
     );
 }

@@ -10,6 +10,7 @@ import X from '@/icons/x';
 import { LinkedInLogoIcon } from '@radix-ui/react-icons';
 import Footer from './footer';
 import Link from 'next/link';
+import Image from "next/image";
 
 export default function ContactsSection() {
     const scrollToSection = useScrollToSection();
@@ -33,7 +34,7 @@ export default function ContactsSection() {
 
                                     {key === 'links' && (
                                         <Link href={value} className="flex flex-row gap-x-2 items-center h-auto p-6 justify-center text-primary underline-offset-4 hover:underline">
-                                            <img src={user} className="w-[36px] rounded-md" />
+                                            <Image height={36} width={36} alt="Links" src={user} className="w-[36px] rounded-md" />
                                             <p className='text-base'>Social Media Profiles</p>
                                         </Link>
                                     )}
@@ -59,7 +60,7 @@ export default function ContactsSection() {
             </div>
 
             <div className='absolute w-full bottom-[calc(16px_+_16px)] flex flex-col justify-center gap-y-4'>
-                <Button className='self-end mr-[16px] rounded-full h-10 w-10 p-2 z-10' variant={'outline'} onClick={() => scrollToSection('hero')}><ChevronUpIcon /></Button>
+                <Button className='self-end mr-[16px] rounded-full h-10 w-10 p-2 z-10' variant={'outline'} onClick={() => scrollToSection('hero')} aria-label="Scroll to hero section"><ChevronUpIcon /></Button>
                 <Footer />
             </div>
         </section>

@@ -44,7 +44,7 @@ export default function ExploreSection() {
                 </div>
             </div>
 
-            <Button className='absolute right-[16px] bottom-[16px] rounded-full h-10 w-10 p-2' variant={'outline'} onClick={() => scrollToSection('projects')}><ChevronDownIcon /></Button>
+            <Button className='absolute right-[16px] bottom-[16px] rounded-full h-10 w-10 p-2' variant={'outline'} onClick={() => scrollToSection('projects')} aria-label='Scroll to projects section'><ChevronDownIcon /></Button>
         </section>
     );
 }

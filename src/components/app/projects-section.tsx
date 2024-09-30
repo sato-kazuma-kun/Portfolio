@@ -16,7 +16,7 @@ export default function ProjectsSection() {
                 <Title varient={"subtitle"} className="text-center underline">No Projects</Title>
             </div>
 
-            <Button className='absolute right-[16px] bottom-[16px] rounded-full h-10 w-10 p-2' variant={'outline'} onClick={() => scrollToSection('contacts')}><ChevronDownIcon /></Button>
+            <Button className='absolute right-[16px] bottom-[16px] rounded-full h-10 w-10 p-2' variant={'outline'} onClick={() => scrollToSection('contacts')} aria-label="Scroll to contacts section"><ChevronDownIcon /></Button>
         </section>
     );
 }

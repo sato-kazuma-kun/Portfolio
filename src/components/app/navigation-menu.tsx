@@ -15,6 +15,7 @@ import { useScrollToSection } from "@/hooks/useScrollToSection";
 import { useRouter, usePathname } from "next/navigation";
 import { MenuIcon } from "lucide-react";
 import { Kazuma } from "@/constants/about-me";
+import Image from "next/image";
 
 export default function NavigationMenu({ children }: { children: React.ReactNode; }) {
     const user = '/assets/user.jpeg';
@@ -85,7 +86,9 @@ export default function NavigationMenu({ children }: { children: React.ReactNode
                 </div>
                 <div className='absolute left-[16px] right-[16px] h-full flex justify-center items-center -z-10'>
                     {pathname === '/links' && (
-                        <img
+                        <Image
+                            height={40}
+                            width={40}
                             src={user}
                             alt="Profile Image"
                             className={`w-10 h-10 rounded-full transition-opacity duration-300 ${isProfileOutOfView ? 'opacity-100' : 'opacity-0'}`}
@@ -96,14 +99,14 @@ export default function NavigationMenu({ children }: { children: React.ReactNode
                 <div id='nav-container' className={`hidden md:flex gap-x-2 md:flex-row z-30 ${pathname === '/links' ? '!flex' : ''}`}>
                     {pathname === '/' && (
                         Object.entries(PortfolioSections).map(([key, section]) => (
-                            <Button variant={'outline'} key={key} onClick={() => scrollToSection(section.id)}>
+                            <Button aria-label={`Sctoll to ${section.title} section`} variant={'outline'} key={key} onClick={() => scrollToSection(section.id)}>
                                 {section.title}
                             </Button>
                         ))
                     )}
                     {Object.entries(NavLinks).map(([key, link]) => (
                         ((link.href === '/' && pathname === '/') || (link.href === '/links' && pathname === '/links')) ? (null) : (
-                            <Button id={key} key={key} variant={'outline'} onClick={() => router.push(link.href)}>
+                            <Button aria-label={`Navigate to ${link.title}`} id={key} key={key} variant={'outline'} onClick={() => router.push(link.href)}>
                                 {link.title}
                             </Button>
                         )
@@ -138,14 +141,14 @@ function NavigationSheet() {
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <Button variant="outline" className='w-9 h-9 p-[0.40rem] rounded-full'><MenuIcon /></Button>
+                <Button aria-label="Open menu" variant="outline" className='w-9 h-9 p-[0.40rem] rounded-full'><MenuIcon /></Button>
             </SheetTrigger>
             <SheetContent side={'left'} className='w-60'>
                 <div className="flex flex-col flex-nowrap mt-4">
                     {pathname === '/' && (
                         Object.entries(PortfolioSections).map(([key, section]) => (
                             <SheetClose key={key} asChild>
-                                <Button variant={'outline'} className='my-2' onClick={() => scrollToSection(section.id)}>
+                                <Button aria-label={`Sctoll to ${section.title} section`} variant={'outline'} className='my-2' onClick={() => scrollToSection(section.id)}>
                                     <p className='w-full text-start'>{section.title}</p>
                                 </Button>
                             </SheetClose>
@@ -155,7 +158,7 @@ function NavigationSheet() {
                     {Object.entries(NavLinks).map(([key, link]) => (
                         link.href === '/' && pathname === '/' ? (null) : (
                             <SheetClose key={key} asChild>
-                                <Button variant={'outline'} className='my-2' onClick={() => router.push(link.href)}>
+                                <Button aria-label={`Navigate to ${link.title}`} variant={'outline'} className='my-2' onClick={() => router.push(link.href)}>
                                     <p className='w-full text-start'>{link.title}</p>
                                 </Button>
                             </SheetClose>

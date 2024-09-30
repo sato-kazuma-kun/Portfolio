@@ -2,6 +2,7 @@
 
 import Footer from "@/components/app/footer";
 import { Kazuma } from "@/constants/about-me";
+import Image from "next/image";
 import { useState, useEffect } from 'react';
 
 export default function LinksSection() {
@@ -107,7 +108,7 @@ export default function LinksSection() {
 
                 <div className='w-full mb-[64px]'>
                     <div className='w-full flex items-center justify-center flex-col gap-y-4'>
-                        <img id='links_profile_pic' src={user} className="w-20 h-20 md:w-24 md:h-24 rounded-full" />
+                        <Image alt="Kazuma-kun" width={100} height={100} id='links_profile_pic' src={user} className="w-20 h-20 md:w-24 md:h-24 rounded-full" />
                         <p className="text-center font-semibold text-2xl md:text-3xl !text-white">{Kazuma.name}</p>
                     </div>
 
@@ -134,7 +135,7 @@ export default function LinksSection() {
                                 onMouseEnter={() => setActiveIndex(index)}
                                 onMouseLeave={() => setActiveIndex(null)}
                             >
-                                <img src={link.icon.light} alt={link.title} className="w-[36px] h-[36px] aspect-square bg-transparent transform transition-all duration-300" />
+                                <Image width={36} height={36} src={link.icon.light} alt={link.title + "Icon"} className="w-[36px] h-[36px] aspect-square bg-transparent transform transition-all duration-300" />
                                 <span className='text-[#6f515c] font-semibold transform transition-all duration-300'>{link.title}</span>
                             </a>
                         ))}

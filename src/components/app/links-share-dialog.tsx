@@ -10,6 +10,7 @@ import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerT
 import { Kazuma } from '@/constants/about-me';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { copyString } from '@/utils';
+import Image from 'next/image';
 
 type ShareProps = {
     [key: string]: {
@@ -28,7 +29,7 @@ const SHARE: ShareProps = [
             action: function ({ url }) { copyString(url); },
         },
         "WhatsApp": {
-            icon_node: <img src='/assets/whatsapp-logo.png' className='w-[30px] h-[30px]' alt=' WhatsApp icon' />,
+            icon_node: <Image width={30} height={30} src='/assets/whatsapp-logo.png' className='w-[30px] h-[30px]' alt=' WhatsApp icon' />,
             action: function ({ text, url }) { if (typeof window !== 'undefined') { window.open(`https://wa.me/?text=${text} - ${url}`, '_blank'); } },
         },
         "Email": {
@@ -36,11 +37,11 @@ const SHARE: ShareProps = [
             action: function ({ text, url }) { if (typeof window !== 'undefined') { window.open(`mailto:?subject=${encodeURIComponent(text)}&body=${encodeURIComponent(url)}`, '_blank'); } },
         },
         "X": {
-            icon_node: <img src='/assets/x-brand.svg' className='w-[30px] h-[30px] bg-white rounded-sm' alt='Twitter icon' />,
+            icon_node: <Image width={30} height={30} src='/assets/x-brand.svg' className='w-[30px] h-[30px] bg-white rounded-sm' alt='Twitter icon' />,
             action: function ({ text, url }) { if (typeof window !== 'undefined') { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' - ')}&url=${encodeURIComponent(url)}`, '_blank'); } },
         },
         "iMessage": {
-            icon_node: <img src='/assets/iMessage.png' className='w-[30px] h-[30px]' alt='iMessage icon' />,
+            icon_node: <Image width={30} height={30} src='/assets/iMessage.png' className='w-[30px] h-[30px]' alt='iMessage icon' />,
             action: function ({ text, url }) { if (typeof window !== 'undefined') { window.open(`sms:&body=${encodeURIComponent(text + ' - ')} ${encodeURIComponent(url)}`, '_blank'); } },
         }
     }
@@ -53,7 +54,7 @@ export default function LinksShareDialog() {
         return (
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
-                    <Button id='share-button' variant={'secondary'} size={'icon'} className='!text-white !transition-all !duration-300 !rounded-full !h-9 !px-[0.60rem] !bg-[#1a1a1a] !bg-opacity-35 hover:!bg-opacity-25'>
+                    <Button aria-label='Share this page' id='share-button' variant={'secondary'} size={'icon'} className='!text-white !transition-all !duration-300 !rounded-full !h-9 !px-[0.60rem] !bg-[#1a1a1a] !bg-opacity-35 hover:!bg-opacity-25'>
                         <ShareIcon />
                     </Button>
                 </DialogTrigger>
@@ -70,7 +71,7 @@ export default function LinksShareDialog() {
     return (
         <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>
-                <Button id='share-button' variant={'secondary'} size={'icon'} className='!text-white !transition-all !duration-300 !rounded-full !h-9 !px-[0.60rem] !bg-[#1a1a1a] !bg-opacity-35 hover:!bg-opacity-25'>
+                <Button aria-label='Share this page' id='share-button' variant={'secondary'} size={'icon'} className='!text-white !transition-all !duration-300 !rounded-full !h-9 !px-[0.60rem] !bg-[#1a1a1a] !bg-opacity-35 hover:!bg-opacity-25'>
                     <ShareIcon />
                 </Button>
             </DrawerTrigger>
@@ -81,7 +82,7 @@ export default function LinksShareDialog() {
                 <ShareForm className="px-4" />
                 <DrawerFooter className="pt-2">
                     <DrawerClose asChild>
-                        <Button variant="outline">Cancel</Button>
+                        <Button aria-label='Cancel sharing' variant="outline">Cancel</Button>
                     </DrawerClose>
                 </DrawerFooter>
             </DrawerContent>
@@ -96,7 +97,10 @@ function ShareForm({ className }: React.ComponentProps<"section">) {
         <section className={cn("", className)}>
             <div className="flex flex-col gap-y-8">
                 <div className='bg-[#342a2b] flex flex-col items-center justify-center rounded-md py-8 gap-y-4'>
-                    <img
+                    <Image
+                        alt='Kazuma-kun'
+                        height={80}
+                        width={80}
                         src={user}
                         className='w-20 h-20 rounded-full'
                     />

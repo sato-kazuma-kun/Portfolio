@@ -15,7 +15,7 @@ export default function Error() {
                     <p className='text-center font-semibold'>There has been an unexpected error.</p>
                 </CardContent>
                 <CardFooter className="flex justify-end">
-                    <Button onClick={() => document.location.reload()}>Reload</Button>
+                    <Button onClick={() => document.location.reload()} aria-label='Reload page'>Reload</Button>
                 </CardFooter>
             </Card>
         </section>
