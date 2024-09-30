@@ -2,7 +2,7 @@
 
 import { Link2Icon, MailIcon, ShareIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import useMediaQuery from '@/hooks/useMediaQuery';
@@ -63,6 +63,11 @@ export default function LinksShareDialog() {
                         <DialogTitle>Share</DialogTitle>
                     </DialogHeader>
                     <ShareForm />
+                    <DialogFooter className='pt-8'>
+                        <DialogClose asChild>
+                            <Button aria-label='Cancel sharing'>Cancel</Button>
+                        </DialogClose>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
         );
@@ -75,14 +80,14 @@ export default function LinksShareDialog() {
                     <ShareIcon />
                 </Button>
             </DrawerTrigger>
-            <DrawerContent className='font-kite'>
+            <DrawerContent className='font-kite h-[96%]'>
                 <DrawerHeader className="text-left">
                     <DrawerTitle>Share</DrawerTitle>
                 </DrawerHeader>
                 <ShareForm className="px-4" />
-                <DrawerFooter className="pt-2">
+                <DrawerFooter className="pt-8">
                     <DrawerClose asChild>
-                        <Button aria-label='Cancel sharing' variant="outline">Cancel</Button>
+                        <Button aria-label='Cancel sharing'>Cancel</Button>
                     </DrawerClose>
                 </DrawerFooter>
             </DrawerContent>
