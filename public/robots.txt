@@ -1,6 +1,6 @@
 # *
 User-agent: *
-Allow: /links/
+Allow: /
 
 # Host
 Host: https://sato-kazuma.vercel.app
