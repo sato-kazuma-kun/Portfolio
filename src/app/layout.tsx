@@ -71,6 +71,12 @@ export async function metadata(): Promise<Metadata> {
     title: title,
     description: description,
 
+    verification: {
+      google: "YMnaznJTdKYFrfqZtxmMxUTEnlb2x44NOkH_osiN66E",
+    },
+
+    robots: "index, follow",
+
     icons: {
       icon: icon,
       apple: appleIcon,

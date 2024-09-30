@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /links/
+
+# Host
+Host: https://sato-kazuma.vercel.app
+
+# Sitemaps
+Sitemap: https://sato-kazuma.vercel.app/sitemap.xml
